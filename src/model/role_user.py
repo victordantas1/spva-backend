@@ -1,7 +1,6 @@
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from base_model import Base
-from model.user_app import UserApp
+from model.base_model import Base
 
 
 class RoleUser(Base):
@@ -10,3 +9,4 @@ class RoleUser(Base):
     name: Mapped[str] = mapped_column(nullable=False)
 
     users: Mapped[list["UserApp"]] = relationship("UserApp", back_populates="role")
+

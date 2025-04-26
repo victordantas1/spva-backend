@@ -1,0 +1,11 @@
+from sqlalchemy import ForeignKey, String
+from sqlalchemy.orm import mapped_column, Mapped
+
+from model.base_model import Base
+
+
+class PhoneNumber(Base):
+    __tablename__ = 'phone_number'
+    phone_number_id: Mapped[int] = mapped_column(primary_key=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey('user_app.user_id'), nullable=False)
+    number: Mapped[str] = mapped_column(String(20), unique=True, nullable=False)

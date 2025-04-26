@@ -1,7 +1,9 @@
 from sqlalchemy import ForeignKey, String, Text, Enum, Date
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from model.base_model import Base
+from model.user_app import Administrator, Candidate
+from model.user_app import UserApp
 
 
 class Job(Base):
@@ -13,3 +15,7 @@ class Job(Base):
     position: Mapped[str] = mapped_column(String(255), nullable=False)
     category: Mapped[Enum] = mapped_column(Enum('remote', 'on-site', 'hybrid', name='category_enum'), nullable=False)
     create_date: Mapped[Date] = mapped_column(Date, nullable=False)
+
+    administrator: Mapped["Administrator"] = relationship("Administrator", back_populates="created_jobs")
+    candidates: Mapped["Candidate"] = relationship("Candidate", back_populates="applied_jobs")
+

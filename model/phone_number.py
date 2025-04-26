@@ -1,7 +1,8 @@
 from sqlalchemy import ForeignKey, String
-from sqlalchemy.orm import mapped_column, Mapped
+from sqlalchemy.orm import mapped_column, Mapped, relationship
 
 from model.base_model import Base
+from model.user_app import UserApp
 
 
 class PhoneNumber(Base):
@@ -9,3 +10,5 @@ class PhoneNumber(Base):
     phone_number_id: Mapped[int] = mapped_column(primary_key=True)
     user_id: Mapped[int] = mapped_column(ForeignKey('user_app.user_id'), nullable=False)
     number: Mapped[str] = mapped_column(String(20), unique=True, nullable=False)
+
+    user: Mapped["UserApp"] = relationship("UserApp", back_populates="phone_numbers")

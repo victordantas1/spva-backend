@@ -6,6 +6,7 @@ from sqlalchemy import select
 
 from db import get_session
 from model import UserApp
+from schemas.user_app import UserAppIn
 
 
 class UserAppRepository:
@@ -31,11 +32,21 @@ class UserAppRepository:
             raise
 
     def delete_user_by_id(self, user_id: int) -> Optional[UserApp]:
-        user = self.get_user_by_id(user_id)
         try:
+            user = self.get_user_by_id(user_id)
             self.session.delete(user)
             self.session.commit()
             return user
         except:
             self.session.rollback()
             raise
+
+    def update_user_by_id(self, user_id: int, user: UserAppIn) -> UserApp:
+        try:
+            user_to_update = self.get_user_by_id(user_id)
+            user_to_update.update_attributes(user)
+            self.session.commit()
+        except:
+            self.session.rollback()
+            raise
+        return user_to_update

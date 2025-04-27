@@ -24,3 +24,7 @@ class UserAppService:
     def delete_user_by_id(self, user_id: int) -> UserApp:
         user = self.repository.delete_user_by_id(user_id)
         return user
+
+    def update_user_by_id(self, user_id: int, user: UserAppIn) -> UserApp:
+        user = self.repository.update_user_by_id(user_id, user)
+        return user

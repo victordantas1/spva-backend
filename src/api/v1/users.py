@@ -1,6 +1,7 @@
 from typing import List
 
 from fastapi import APIRouter, Depends
+from starlette import status
 
 from dependecies import get_user_service
 from schemas import UserAppOut
@@ -19,7 +20,7 @@ async def get_user(user_id: int, service: UserAppService = Depends(get_user_serv
     user = service.get_user_by_id(user_id)
     return user
 
-@router.post("", response_model=UserAppOut)
+@router.post("", response_model=UserAppOut, status_code=status.HTTP_201_CREATED)
 async def create_user(user: UserAppIn, service: UserAppService = Depends(get_user_service)):
     user = service.create_user(user)
     return user
@@ -29,3 +30,7 @@ async def delete_user(user_id: int, service: UserAppService = Depends(get_user_s
     user = service.delete_user_by_id(user_id)
     return user
 
+@router.put("/{user_id}", response_model=UserAppOut)
+async def update_user(user: UserAppIn, user_id: int, service: UserAppService = Depends(get_user_service)):
+    user = service.update_user_by_id(user_id, user)
+    return user

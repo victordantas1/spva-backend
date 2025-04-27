@@ -6,7 +6,7 @@ GET localhost:8000/users/1
 
 ###
 
-GET localhost:8000/users/2
+GET localhost:8000/users/4
 
 ###
 
@@ -28,3 +28,16 @@ Content-Type: application/json
 DELETE localhost:8000/users/3
 
 ###
+
+PUT localhost:8000/users/4
+Content-Type: application/json
+
+{
+    "first_name": "Emmily Laiane",
+    "last_name": "Freitas",
+    "email": "emmily.freitas@example.com",
+    "password": "senha123",
+    "birthdate": "2005-08-11",
+    "resume_path": "emmily_cv.pdf",
+    "role_id": 2
+}

@@ -2,6 +2,7 @@ from sqlalchemy import String, Date, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from datetime import date
 from model.base_model import Base
+from schemas.user_app import UserAppIn
 
 
 class UserApp(Base):
@@ -23,6 +24,14 @@ class UserApp(Base):
     role: Mapped["RoleUser"] = relationship("RoleUser", back_populates="users")
     phone_numbers: Mapped[list["PhoneNumber"]] = relationship("PhoneNumber", back_populates="user")
 
+
+    def update_attributes(self, other_user: UserAppIn):
+        self.first_name = other_user.first_name
+        self.last_name = other_user.last_name
+        self.email = str(other_user.email)
+        self.birthdate = other_user.birthdate
+        self.resume_path = other_user.resume_path
+        self.role_id = other_user.role_id
 
 class Candidate(UserApp):
     __mapper_args__ = {

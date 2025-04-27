@@ -1,11 +1,10 @@
 from typing import List
 
-from fastapi import APIRouter, Depends
-from starlette import status
+from fastapi import APIRouter, Depends, status
 
 from dependecies import get_user_service
 from schemas import UserAppOut
-from schemas.user_app import UserAppIn
+from schemas import UserAppIn
 from services import UserAppService
 
 router = APIRouter(prefix="/users", tags=["users"])

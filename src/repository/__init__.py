@@ -1,1 +1,2 @@
 from .user_app_repository import UserAppRepository
+from .job_repository import JobRepository

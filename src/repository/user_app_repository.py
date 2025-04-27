@@ -1,12 +1,9 @@
-from typing import Type, List, Optional
+from typing import List, Optional
 
-from fastapi import Depends
 from sqlalchemy.orm import Session
 from sqlalchemy import select
-
-from db import get_session
 from model import UserApp
-from schemas.user_app import UserAppIn
+from schemas import UserAppIn
 
 
 class UserAppRepository:

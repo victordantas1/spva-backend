@@ -2,7 +2,7 @@ from typing import List
 
 from model import UserApp
 from repository import UserAppRepository
-from schemas.user_app import UserAppIn
+from schemas import UserAppIn
 
 
 class UserAppService:

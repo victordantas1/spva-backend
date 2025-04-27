@@ -1,0 +1,30 @@
+GET localhost:8000/users
+
+###
+
+GET localhost:8000/users/1
+
+###
+
+GET localhost:8000/users/2
+
+###
+
+POST localhost:8000/users
+Content-Type: application/json
+
+{
+    "first_name": "Carlos",
+    "last_name": "Andrade",
+    "email": "carlos.andrade@example.com",
+    "password": "senha123",
+    "birthdate": "2005-08-11",
+    "resume_path": "carlos_cv.pdf",
+    "role_id": 1
+}
+
+###
+
+DELETE localhost:8000/users/3
+
+###

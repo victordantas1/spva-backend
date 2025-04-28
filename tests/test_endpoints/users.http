@@ -14,12 +14,12 @@ POST localhost:8000/users
 Content-Type: application/json
 
 {
-    "first_name": "Carlos",
-    "last_name": "Andrade",
-    "email": "carlos.andrade@example.com",
+    "first_name": "Guilherme",
+    "last_name": "Costa",
+    "email": "guilherme.costa@example.com",
     "password": "senha123",
     "birthdate": "2005-08-11",
-    "resume_path": "carlos_cv.pdf",
+    "resume_path": "guilherme_cv.pdf",
     "role_id": 1
 }
 

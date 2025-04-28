@@ -2,7 +2,7 @@ from sqlalchemy import ForeignKey, String, Text, Enum, Date
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from model.base_model import Base
-from enums import CategoryEnum
+from .enums import CategoryEnum
 from model.user_app import Administrator, Candidate
 
 from datetime import date

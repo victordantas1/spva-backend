@@ -1,0 +1,28 @@
+GET localhost:8000/user_jobs
+
+###
+
+GET localhost:8000/user_jobs/1/1
+
+###
+
+POST localhost:8000/user_jobs
+Content-Type: application/json
+
+{
+    "user_id": 1,
+    "job_id": 5
+}
+
+###
+
+DELETE localhost:8000/user_jobs/1/5
+
+###
+
+PUT localhost:8000/user_jobs/1/5
+Content-Type: application/json
+
+{
+    "resume_path": "jhon_cv2.pdf"
+}

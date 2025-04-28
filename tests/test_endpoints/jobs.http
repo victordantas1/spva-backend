@@ -19,6 +19,136 @@ Content-Type: application/json
 
 ###
 
+POST localhost:8000/jobs
+Content-Type: application/json
+
+{
+    "user_id": "2",
+    "title": "Back End Developer",
+    "description": "Experienced Back End Developer with expertise in Node.js, Express, and PostgreSQL.",
+    "position": "Developer",
+    "category": "remote"
+}
+
+###
+
+POST localhost:8000/jobs
+Content-Type: application/json
+
+{
+    "user_id": "2",
+    "title": "Full Stack Developer",
+    "description": "Full Stack Developer proficient in React, Node.js, and cloud services like AWS.",
+    "position": "Developer",
+    "category": "hybrid"
+}
+
+###
+
+POST localhost:8000/jobs
+Content-Type: application/json
+
+{
+    "user_id": "2",
+    "title": "UI/UX Designer",
+    "description": "Creative UI/UX Designer with a strong portfolio in Figma, Adobe XD, and user research.",
+    "position": "Designer",
+    "category": "on-site"
+}
+
+###
+
+POST localhost:8000/jobs
+Content-Type: application/json
+
+{
+    "user_id": "2",
+    "title": "Software Engineer",
+    "description": "Software Engineer with 5 years of experience building scalable web applications in JavaScript and Python.",
+    "position": "Engineer",
+    "category": "remote"
+}
+
+###
+
+POST localhost:8000/jobs
+Content-Type: application/json
+
+{
+    "user_id": "2",
+    "title": "Product Manager",
+    "description": "Product Manager with a background in agile methodologies and product lifecycle management.",
+    "position": "Manager",
+    "category": "hybrid"
+}
+
+###
+
+POST localhost:8000/jobs
+Content-Type: application/json
+
+{
+    "user_id": "2",
+    "title": "DevOps Engineer",
+    "description": "DevOps Engineer skilled in CI/CD pipelines, Kubernetes, and AWS services.",
+    "position": "Engineer",
+    "category": "on-site"
+}
+
+###
+
+POST localhost:8000/jobs
+Content-Type: application/json
+
+{
+    "user_id": "2",
+    "title": "Mobile Developer",
+    "description": "Mobile Developer specializing in React Native and Flutter for cross-platform applications.",
+    "position": "Developer",
+    "category": "remote"
+}
+
+###
+
+POST localhost:8000/jobs
+Content-Type: application/json
+
+{
+    "user_id": "2",
+    "title": "QA Engineer",
+    "description": "QA Engineer experienced in automation testing with Selenium and Cypress.",
+    "position": "Engineer",
+    "category": "hybrid"
+}
+
+###
+
+POST localhost:8000/jobs
+Content-Type: application/json
+
+{
+    "user_id": "2",
+    "title": "Data Scientist",
+    "description": "Data Scientist with expertise in machine learning, Python, and big data tools.",
+    "position": "Scientist",
+    "category": "remote"
+}
+
+###
+
+POST localhost:8000/jobs
+Content-Type: application/json
+
+{
+    "user_id": "2",
+    "title": "System Administrator",
+    "description": "System Administrator proficient in Linux systems, networking, and security protocols.",
+    "position": "Administrator",
+    "category": "on-site"
+}
+
+###
+
 DELETE localhost:8000/jobs/2
 
 ###
@@ -31,7 +161,7 @@ Content-Type: application/json
     "title": "Front End Developer",
     "description": "Front End Developer with experience of 10 years in React, Next, Node.",
     "position": "Developer",
-    "category": "on-site"
+    "category": "hybrid"
 }
 
 ###

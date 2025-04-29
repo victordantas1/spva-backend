@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from api.v1.users import router as users_router
 from api.v1.jobs import router as jobs_router
 from api.v1.user_job import router as user_job_router
-
+from api.v1.role_user import router as role_user_router
 app = FastAPI()
 
 origins = [
@@ -22,3 +22,4 @@ app.add_middleware(
 app.include_router(users_router)
 app.include_router(jobs_router)
 app.include_router(user_job_router)
+app.include_router(role_user_router)

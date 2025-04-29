@@ -10,3 +10,5 @@ class RoleUser(Base):
 
     users: Mapped[list["UserApp"]] = relationship("UserApp", back_populates="role")
 
+    def update_role_name(self, role_name: str) -> None:
+        self.name = role_name

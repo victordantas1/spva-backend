@@ -1,0 +1,29 @@
+GET localhost:8000/role_users
+
+###
+
+GET localhost:8000/role_users/1
+
+###
+
+POST localhost:8000/role_users
+Content-Type: application/json
+
+{
+    "name": "owner"
+}
+
+###
+
+DELETE localhost:8000/role_users/3
+
+###
+
+PUT localhost:8000/role_users/3
+Content-Type: application/json
+
+{
+    "name": "owner2"
+}
+
+###

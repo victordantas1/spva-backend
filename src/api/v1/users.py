@@ -1,11 +1,15 @@
-from typing import List
+import io
+from typing import List, Annotated
 
-from fastapi import APIRouter, Depends, status
+from fastapi import APIRouter, Depends, status, UploadFile, File
+from minio import Minio
+from pydantic import EmailStr
 
 from dependecies import get_user_service
+from dependecies.minio_dependencies import get_minio_service
 from schemas import UserAppOut
 from schemas import UserAppIn
-from services import UserAppService
+from services import UserAppService, MinioService
 
 router = APIRouter(prefix="/users", tags=["users"])
 
@@ -32,4 +36,19 @@ async def delete_user(user_id: int, service: UserAppService = Depends(get_user_s
 @router.put("/{user_id}", response_model=UserAppOut)
 async def update_user(user: UserAppIn, user_id: int, service: UserAppService = Depends(get_user_service)):
     user = service.update_user_by_id(user_id, user)
+    return user
+
+@router.post("/{user_id}/upload_resume", response_model=UserAppOut)
+async def upload_resume(resume: UploadFile, user_id: int, service: UserAppService = Depends(get_user_service), minio_service: MinioService = Depends(get_minio_service)):
+    user = service.get_user_by_id(user_id)
+    user.resume_path = f'{user.user_id}/{resume.filename}'
+    await minio_service.upload_resume(resume, user_id)
+    user = service.update_user_by_id(user_id, UserAppIn(user_id=user.user_id,
+                                                 first_name=user.first_name,
+                                                 last_name=user.last_name,
+                                                 email=user.email,
+                                                 password=user.password,
+                                                 role_id=user.role_id,
+                                                 birthdate=user.birthdate,
+                                                 resume_path=str(user.resume_path)))
     return user

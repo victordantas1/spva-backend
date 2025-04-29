@@ -18,7 +18,7 @@ class UserApp(Base):
     password: Mapped[str] = mapped_column(String(255), nullable=False)
     birthdate: Mapped[date] = mapped_column()
     email: Mapped[str] = mapped_column(String(255), nullable=False)
-    resume_path: Mapped[str] = mapped_column(String(255), nullable=False)
+    resume_path: Mapped[str] = mapped_column(String(255))
     role_id: Mapped[int] = mapped_column(ForeignKey('role_user.role_id'), nullable=False)
 
     role: Mapped["RoleUser"] = relationship("RoleUser", back_populates="users")

@@ -41,3 +41,26 @@ Content-Type: application/json
     "resume_path": "emmily_cv.pdf",
     "role_id": 2
 }
+###
+
+POST http://localhost:8000/users/upload
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="resume"; filename="cv1.pdf"
+Content-Type: multipart/form-data
+
+< ./data/cv1.pdf
+
+###
+
+POST http://localhost:8000/users/2/upload_resume
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="resume"; filename="cv (2).pdf"
+Content-Type: multipart/form-data
+
+< ./data/cv%20(2).pdf
+
+###

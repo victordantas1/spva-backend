@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS user_app (
     password VARCHAR(255) NOT NULL,
     birthdate DATE,
     email VARCHAR(255) NOT NULL UNIQUE,
-    resume_path VARCHAR(255) NOT NULL,
+    resume_path VARCHAR(255),
     role_id INT NOT NULL,
     FOREIGN KEY (role_id) references role_user(role_id)
 );

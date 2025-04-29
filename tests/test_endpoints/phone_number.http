@@ -1,0 +1,31 @@
+GET localhost:8000/phone_numbers
+
+###
+
+GET localhost:8000/phone_numbers/1
+
+###
+
+POST localhost:8000/phone_numbers
+Content-Type: application/json
+
+{
+    "user_id": 1,
+    "number": "+5592994567891"
+}
+
+###
+
+DELETE localhost:8000/phone_numbers/2
+
+###
+
+PUT localhost:8000/phone_numbers/3
+Content-Type: application/json
+
+{
+    "user_id": 1,
+    "number": "+5592995467118"
+}
+
+###

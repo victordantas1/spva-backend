@@ -10,3 +10,6 @@ class PhoneNumber(Base):
     number: Mapped[str] = mapped_column(String(20), unique=True, nullable=False)
 
     user: Mapped["UserApp"] = relationship("UserApp", back_populates="phone_numbers")
+
+    def update_number(self, number: str) -> None:
+        self.number = number

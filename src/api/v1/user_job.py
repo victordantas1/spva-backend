@@ -1,6 +1,8 @@
-from typing import List
+import io
+from typing import List, Annotated
 
-from fastapi import APIRouter, Depends, status
+from fastapi import APIRouter, Depends, status, UploadFile, File
+from minio import Minio
 
 from dependecies import get_user_job_service
 from schemas import UserJob

@@ -1,5 +1,6 @@
 from datetime import date
 
+from fastapi import UploadFile
 from pydantic import BaseModel, EmailStr
 
 class UserAppBase(BaseModel):
@@ -17,5 +18,5 @@ class UserAppOut(UserAppBase):
 class UserAppIn(UserAppBase):
     password: str
     birthdate: date
-    resume_path: str
+    resume_path: str | None = None
     role_id: int

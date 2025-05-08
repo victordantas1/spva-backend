@@ -54,13 +54,13 @@ Content-Type: multipart/form-data
 
 ###
 
-POST http://localhost:8000/users/2/upload_resume
+POST http://localhost:8000/users/6/upload_resume
 Content-Type: multipart/form-data; boundary=WebAppBoundary
 
 --WebAppBoundary
-Content-Disposition: form-data; name="resume"; filename="cv (2).pdf"
+Content-Disposition: form-data; name="resume"; filename="cv (4).pdf"
 Content-Type: multipart/form-data
 
-< ./data/cv%20(2).pdf
+< ./data/cv%20(4).pdf
 
 ###

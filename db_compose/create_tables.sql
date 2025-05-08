@@ -34,6 +34,13 @@ CREATE TABLE IF NOT EXISTS job (
     position VARCHAR(255) NOT NULL,
     category ENUM('remote', 'on-site', 'hybrid') NOT NULL,
     create_date DATE,
+    responsibilities TEXT,
+    requirements TEXT,
+    level VARCHAR(50),
+    contract_type VARCHAR(50),
+    schedule VARCHAR(100),
+    salary_range VARCHAR(100),
+    company VARCHAR(255),
     FOREIGN KEY (user_id) references user_app(user_id)
 );
 

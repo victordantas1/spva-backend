@@ -13,10 +13,10 @@ class UserAppBase(BaseModel):
         orm_mode = True
 
 class UserAppOut(UserAppBase):
-    resume_path: str
+    resume_path: str | None = None
 
 class UserAppIn(UserAppBase):
     password: str
-    birthdate: date
+    birthdate: date | None = None
     resume_path: str | None = None
-    role_id: int
+    role_id: int | None = 1

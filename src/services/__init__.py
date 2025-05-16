@@ -4,3 +4,4 @@ from .user_job_service import UserJobService
 from .role_user_service import RoleUserService
 from .phone_number_service import PhoneNumberService
 from .minio_service import MinioService
+from .auth_service import AuthService

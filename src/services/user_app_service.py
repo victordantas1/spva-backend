@@ -13,6 +13,10 @@ class UserAppService:
         user = self.repository.get_user_by_id(user_id)
         return user
 
+    def get_user_by_email(self, user_email: str) -> UserApp:
+        user = self.repository.get_user_by_email(user_email)
+        return user
+
     def get_users(self) -> List[UserApp]:
         users = self.repository.get_users()
         return users

@@ -1,12 +1,10 @@
-import io
-from typing import List, Annotated
+from typing import List
 
-from fastapi import APIRouter, Depends, status, UploadFile, File
-from minio import Minio
-from pydantic import EmailStr
+from fastapi import APIRouter, Depends, status, UploadFile
 
-from dependecies import get_user_service
+from dependecies import get_user_service, get_auth_service, get_current_user
 from dependecies.minio_dependencies import get_minio_service
+from model import UserApp
 from schemas import UserAppOut
 from schemas import UserAppIn
 from services import UserAppService, MinioService
@@ -14,12 +12,12 @@ from services import UserAppService, MinioService
 router = APIRouter(prefix="/users", tags=["users"])
 
 @router.get("", response_model=List[UserAppOut])
-async def get_users(service: UserAppService = Depends(get_user_service)):
+async def get_users(service: UserAppService = Depends(get_user_service), user_app: UserApp = Depends(get_current_user)):
     users = service.get_users()
     return users
 
 @router.get("/{user_id}", response_model=UserAppOut)
-async def get_user(user_id: int, service: UserAppService = Depends(get_user_service)):
+async def get_user(user_id: int, service: UserAppService = Depends(get_user_service), user_app: UserApp = Depends(get_current_user)):
     user = service.get_user_by_id(user_id)
     return user
 

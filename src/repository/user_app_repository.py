@@ -19,6 +19,12 @@ class UserAppRepository:
         users = result.scalars().all()
         return list(users)
 
+    def get_user_by_email(self, email: str) -> Optional[UserApp]:
+        stmt = select(UserApp).where(UserApp.email == email)
+        result = self.session.execute(stmt)
+        user = result.scalar()
+        return user
+
     def save_user(self, user: UserApp) -> UserApp:
         try:
             self.session.add(user)

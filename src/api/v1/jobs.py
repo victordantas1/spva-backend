@@ -2,14 +2,15 @@ from typing import List
 
 from fastapi import APIRouter, Depends, status
 
-from dependecies import get_job_service
+from dependecies import get_job_service, get_current_user
+from model import UserApp
 from schemas import JobOut, JobIn
-from services import JobService
+from services import JobService, auth_service
 
 router = APIRouter(prefix="/jobs", tags=["jobs"])
 
 @router.get("", response_model=List[JobOut])
-async def get_jobs(service: JobService = Depends(get_job_service)):
+async def get_jobs(service: JobService = Depends(get_job_service), user: UserApp = Depends(get_current_user)):
     jobs = service.get_jobs()
     return jobs
 

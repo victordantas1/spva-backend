@@ -3,6 +3,7 @@ from typing import List
 from model import UserApp
 from repository import UserAppRepository
 from schemas import UserAppIn
+from auth import get_password_hash
 
 
 class UserAppService:
@@ -13,11 +14,16 @@ class UserAppService:
         user = self.repository.get_user_by_id(user_id)
         return user
 
+    def get_user_by_email(self, user_email: str) -> UserApp:
+        user = self.repository.get_user_by_email(user_email)
+        return user
+
     def get_users(self) -> List[UserApp]:
         users = self.repository.get_users()
         return users
 
     def create_user(self, user: UserAppIn) -> UserApp:
+        user.password = get_password_hash(user.password)
         user = self.repository.save_user(UserApp(**user.dict()))
         return user
 

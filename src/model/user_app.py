@@ -1,4 +1,4 @@
-from sqlalchemy import String, Date, ForeignKey
+from sqlalchemy import String, Date, ForeignKey, Enum
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from datetime import date
 from model.base_model import Base
@@ -21,6 +21,15 @@ class UserApp(Base):
     resume_path: Mapped[str] = mapped_column(String(255))
     role_id: Mapped[int] = mapped_column(ForeignKey('role_user.role_id'), nullable=False)
 
+    github_url: Mapped[str] = mapped_column(String(255), nullable=True)
+    linkedin_url: Mapped[str] = mapped_column(String(255), nullable=True)
+    portfolio_url: Mapped[str] = mapped_column(String(255), nullable=True)
+    city: Mapped[str] = mapped_column(String(100), nullable=True)
+    state: Mapped[str] = mapped_column(String(100), nullable=True)
+    country: Mapped[str] = mapped_column(String(100), nullable=True)
+    work_preference: Mapped[str] = mapped_column(Enum('remote', 'on-site', 'hybrid', name='work_preference_enum'), nullable=True)
+    interest_area: Mapped[str] = mapped_column(String(255), nullable=True)
+
     role: Mapped["RoleUser"] = relationship("RoleUser", back_populates="users")
     phone_numbers: Mapped[list["PhoneNumber"]] = relationship("PhoneNumber", back_populates="user")
 
@@ -29,9 +38,32 @@ class UserApp(Base):
         self.first_name = other_user.first_name
         self.last_name = other_user.last_name
         self.email = str(other_user.email)
-        self.birthdate = other_user.birthdate
-        self.resume_path = other_user.resume_path
-        self.role_id = other_user.role_id
+
+        if other_user.birthdate:
+            self.birthdate = other_user.birthdate
+        if other_user.resume_path:
+            self.resume_path = other_user.resume_path
+        if other_user.role_id:
+            self.role_id = other_user.role_id
+
+        if other_user.phone:
+            self.phone = other_user.phone
+        if other_user.github_url:
+            self.github_url = other_user.github_url
+        if other_user.linkedin_url:
+            self.linkedin_url = other_user.linkedin_url
+        if other_user.portfolio_url:
+            self.portfolio_url = other_user.portfolio_url
+        if other_user.city:
+            self.city = other_user.city
+        if other_user.state:
+            self.state = other_user.state
+        if other_user.country:
+            self.country = other_user.country
+        if other_user.work_preference:
+            self.work_preference = other_user.work_preference
+        if other_user.interest_area:
+            self.interest_area = other_user.interest_area
 
 class Candidate(UserApp):
     __mapper_args__ = {
@@ -55,3 +87,5 @@ class Administrator(UserApp):
         "Job",
         back_populates="administrator"
     )
+    def __repr__(self):
+        return f'<UserApp {self.user_id}>, {self.first_name} {self.last_name}, {self.email}, {self.resume_path}'

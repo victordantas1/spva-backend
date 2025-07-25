@@ -1,4 +1,6 @@
 import os
+from datetime import datetime
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -11,4 +13,10 @@ config = {
     'minio_access_key': os.environ.get('MINIO_ACCESS_KEY'),
     'minio_secret_key': os.environ.get('MINIO_SECRET_KEY'),
     'bucket_resumes': os.environ.get('BUCKET_RESUMES')
+}
+
+auth_config = {
+    'secret_key': os.environ.get('AUTH_SECRET_KEY'),
+    'algorithm': os.environ.get('AUTH_ALGORITHM'),
+    'access_token_expires_minutes': int(os.environ.get('AUTH_TOKEN_EXPIRATION_MINUTES'))
 }

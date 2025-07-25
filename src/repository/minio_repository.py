@@ -13,7 +13,7 @@ class MinioRepository:
         self.client.put_object(
             bucket_name=bucket_name,
             object_name=destination_file,
-            data=binary_stream,  # Gera um iterador de bytes
+            data=binary_stream,
             length=len(contents),
             content_type=resume.content_type
         )

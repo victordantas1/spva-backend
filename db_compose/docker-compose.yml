@@ -24,7 +24,7 @@ services:
       MYSQL_PASSWORD: senha123
       MYSQL_DATABASE: spva
     ports:
-      - "3306:3306"
+      - "3306:3306" 
     volumes:
       - ./create_tables.sql:/docker-entrypoint-initdb.d/0_init.sql
       - mysql_spva_volume:/var/lib/mysql

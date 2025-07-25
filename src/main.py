@@ -1,16 +1,6 @@
-from typing import Annotated
-
-from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from pydantic import BaseModel
-from starlette import status
-from typing import Annotated
+from fastapi import FastAPI
 
-import jwt
-from fastapi import Depends, FastAPI, HTTPException, status
-
-from pydantic import BaseModel
 
 from api.v1.auth import auth_router
 from api.v1.users import router as users_router

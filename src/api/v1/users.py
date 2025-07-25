@@ -5,7 +5,7 @@ from fastapi import APIRouter, Depends, status, UploadFile
 from dependecies import get_user_service, get_auth_service, get_current_user
 from dependecies.minio_dependencies import get_minio_service
 from model import UserApp
-from schemas import UserAppOut
+from schemas import UserAppOut, UserAppBase
 from schemas import UserAppIn
 from services import UserAppService, MinioService
 
@@ -15,6 +15,11 @@ router = APIRouter(prefix="/users", tags=["users"])
 async def get_users(service: UserAppService = Depends(get_user_service), user_app: UserApp = Depends(get_current_user)):
     users = service.get_users()
     return users
+
+@router.get('/me', response_model=UserAppOut)
+async def get_me(service: UserAppService = Depends(get_user_service), user: UserApp = Depends(get_current_user)):
+    user = service.get_user_by_id(user.user_id)
+    return user
 
 @router.get("/{user_id}", response_model=UserAppOut)
 async def get_user(user_id: int, service: UserAppService = Depends(get_user_service), user_app: UserApp = Depends(get_current_user)):

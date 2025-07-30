@@ -1,6 +1,6 @@
 from typing import List
 
-from model import Job
+from model import Job, UserApp, Candidate
 from repository import JobRepository
 from schemas import JobIn
 
@@ -28,3 +28,7 @@ class JobService:
     def update_job_by_id(self, job_id: int, job: JobIn) -> Job:
         job = self.repository.update_job_by_id(job_id, job)
         return job
+
+    def get_candidates(self, job_id: int) -> List[Candidate]:
+        candidates = self.repository.get_candidates(job_id)
+        return candidates

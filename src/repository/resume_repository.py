@@ -4,7 +4,7 @@ from fastapi import UploadFile
 from minio import Minio
 
 
-class MinioRepository:
+class ResumeRepository:
 
     def __init__(self, client: Minio):
         self.client = client

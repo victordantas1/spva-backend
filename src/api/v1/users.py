@@ -3,7 +3,7 @@ from typing import List
 from fastapi import APIRouter, Depends, status, UploadFile
 
 from dependecies import get_user_service, get_auth_service, get_current_user
-from dependecies.minio_dependencies import get_minio_service
+from dependecies.resume_dependencies import get_minio_service
 from model import UserApp
 from schemas import UserAppOut, UserAppBase
 from schemas import UserAppIn

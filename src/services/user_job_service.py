@@ -1,7 +1,7 @@
 from typing import List
 
 import model
-from model import UserJob
+from model import UserApp
 
 from repository import UserAppRepository, UserJobRepository
 from schemas import UserJob
@@ -20,7 +20,8 @@ class UserJobService:
         user_jobs = self.user_job_repository.get_user_jobs()
         return user_jobs
 
-    def create_user_job(self, user_job: UserJob) -> UserJob:
+    def create_user_job(self, user_job: UserJob, user: UserApp) -> UserJob:
+        user_job.user_id = user.user_id
         candidate = self.user_repository.get_user_by_id(user_job.user_id)
         user_job.resume_path = str(candidate.resume_path)
         user_job = self.user_job_repository.save_user_job(model.UserJob(**user_job.dict()))

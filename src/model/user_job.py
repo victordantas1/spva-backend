@@ -1,6 +1,6 @@
 import enum
 
-from sqlalchemy import Date, Enum, String
+from sqlalchemy import Date, Enum, String, ForeignKey
 from datetime import date
 from sqlalchemy.orm import mapped_column, Mapped
 
@@ -12,8 +12,8 @@ from .enums import StatusEnum
 class UserJob(Base):
     __tablename__ = 'user_job'
 
-    user_id: Mapped[int] = mapped_column(primary_key=True)
-    job_id: Mapped[int] = mapped_column(primary_key=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey('user_app.user_id'), primary_key=True)
+    job_id: Mapped[int] = mapped_column(ForeignKey('job.job_id'), primary_key=True)
     application_date: Mapped[date] = mapped_column(Date, nullable=False, default=date.today())
     status: Mapped[StatusEnum] = mapped_column(Enum('sent', 'analyse', 'rejected', 'accepted'), nullable=False, default='sent')
     resume_path: Mapped[str] = mapped_column(String(255), nullable=False)

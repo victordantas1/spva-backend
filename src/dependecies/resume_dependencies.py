@@ -1,7 +1,7 @@
 from fastapi import Depends
 from minio import Minio
 from config import config
-from repository import MinioRepository
+from repository import ResumeRepository
 from services import MinioService
 
 
@@ -14,8 +14,8 @@ def get_minio_client() -> Minio:
     )
     return client
 
-def get_minio_repository(client: Minio = Depends(get_minio_client)) -> MinioRepository:
-    return MinioRepository(client)
+def get_minio_repository(client: Minio = Depends(get_minio_client)) -> ResumeRepository:
+    return ResumeRepository(client)
 
-def get_minio_service(repository: MinioRepository = Depends(get_minio_repository)) -> MinioService:
+def get_minio_service(repository: ResumeRepository = Depends(get_minio_repository)) -> MinioService:
     return MinioService(repository)

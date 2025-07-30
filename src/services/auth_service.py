@@ -17,7 +17,6 @@ class AuthService:
             return False
         if not verify_password(password, user.password):
             return False
-        print(user)
         return user
 
     def create_token(self, data: dict, expires_delta: timedelta) -> str:

@@ -3,9 +3,10 @@ from typing import List
 from fastapi import APIRouter, Depends, status
 
 from dependecies import get_job_service, get_current_user
-from model import UserApp
+from model import UserApp, Candidate
+from schemas import UserAppOut
 from schemas import JobOut, JobIn
-from services import JobService, auth_service
+from services import JobService
 
 router = APIRouter(prefix="/jobs", tags=["jobs"])
 
@@ -33,3 +34,8 @@ async def delete_job(job_id: int, service: JobService = Depends(get_job_service)
 async def update_job(job: JobIn, job_id: int, service: JobService = Depends(get_job_service)):
     job = service.update_job_by_id(job_id, job)
     return job
+
+@router.get("/candidates/{job_id}", response_model=List[UserAppOut])
+async def get_candidates(job_id: int, service: JobService = Depends(get_job_service)):
+    candidates = service.get_candidates(job_id)
+    return candidates

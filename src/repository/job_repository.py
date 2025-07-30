@@ -3,7 +3,7 @@ from typing import List, Optional
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from model import Job
+from model import Job, UserApp, UserJob, Candidate
 from schemas import JobIn
 
 
@@ -48,3 +48,7 @@ class JobRepository:
             self.session.rollback()
             raise
         return job_to_update
+
+    def get_candidates(self, job_id: int) -> List[Candidate]:
+        job = self.session.get(Job, job_id)
+        return job.candidates

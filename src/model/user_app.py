@@ -1,6 +1,9 @@
+from typing import List
+
 from sqlalchemy import String, Date, ForeignKey, Enum
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from datetime import date
+
 from model.base_model import Base
 from schemas.user_app import UserAppIn
 
@@ -70,7 +73,7 @@ class Candidate(UserApp):
         "polymorphic_identity": 1
     }
 
-    applied_jobs: Mapped[list["Job"]] = relationship(
+    applied_jobs: Mapped[List["Job"]] = relationship(
         "Job",
         secondary="user_job",
         primaryjoin="Candidate.user_id == UserJob.user_id",

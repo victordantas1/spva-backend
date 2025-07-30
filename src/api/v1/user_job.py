@@ -2,9 +2,12 @@ import io
 from typing import List, Annotated
 
 from fastapi import APIRouter, Depends, status, UploadFile, File
+from fastapi.params import Header
 from minio import Minio
 
-from dependecies import get_user_job_service
+from model import UserApp
+from src.auth import TokenData
+from dependecies import get_user_job_service, get_current_user
 from schemas import UserJob
 from services import UserJobService
 
@@ -21,8 +24,8 @@ async def get_user_job(user_id: int, job_id: int, service: UserJobService = Depe
     return user_job
 
 @router.post("", response_model=UserJob, status_code=status.HTTP_201_CREATED)
-async def create_user_job(user_job: UserJob, service: UserJobService = Depends(get_user_job_service)):
-    user_job = service.create_user_job(user_job)
+async def create_user_job(user_job: UserJob, service: UserJobService = Depends(get_user_job_service), user: UserApp = Depends(get_current_user)):
+    user_job = service.create_user_job(user_job, user)
     return user_job
 
 @router.delete("/{user_id}/{job_id}", response_model=UserJob)

@@ -14,7 +14,7 @@ class UserAppBase(BaseModel):
     email: EmailStr
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class UserAppIn(UserAppBase):
     password: Optional[str] = None

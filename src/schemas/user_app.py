@@ -17,11 +17,10 @@ class UserAppBase(BaseModel):
         from_attributes = True
 
 class UserAppIn(UserAppBase):
-    password: Optional[str] = None
+    password: str = None
     birthdate: Optional[date] = None
     resume_path: Optional[str] = None
-    role_id: Optional[int] = None
-    phone: Optional[str] = None
+    role_id: int = None
     github_url: Optional[str] = None
     linkedin_url: Optional[str] = None
     portfolio_url: Optional[str] = None

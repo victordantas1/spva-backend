@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, datetime
 from typing import Optional
 
 from pydantic import BaseModel
@@ -7,12 +7,12 @@ from model.enums.category_enum import CategoryEnum
 
 
 class JobBase(BaseModel):
-    user_id: int
+    user_id: int = None
     title: str
     description: str
     position: str
     category: CategoryEnum
-    create_date: date = date.today()
+    create_date: Optional[date] = date.today()
     responsibilities: Optional[str] = None
     requirements: Optional[str] = None
     level: Optional[str] = None
@@ -26,3 +26,4 @@ class JobIn(JobBase):
 
 class JobOut(JobBase):
     job_id: int
+    update_date: Optional[datetime] = None

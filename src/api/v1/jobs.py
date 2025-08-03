@@ -35,7 +35,7 @@ async def update_job(job: JobIn, job_id: int, service: JobService = Depends(get_
     job = service.update_job_by_id(job_id, job)
     return job
 
-@router.get("/candidates/{job_id}", response_model=List[UserAppOut])
+@router.get("/{job_id}/candidates", response_model=List[UserAppOut])
 async def get_candidates(job_id: int, service: JobService = Depends(get_job_service)):
     candidates = service.get_candidates(job_id)
     return candidates

@@ -1,13 +1,13 @@
 from typing import List
 
-from sqlalchemy import ForeignKey, String, Text, Enum, Date
+from sqlalchemy import ForeignKey, String, Text, Enum, Date, DateTime
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from model.base_model import Base
 from .enums import CategoryEnum
 from model.user_app import Administrator, Candidate
 
-from datetime import date
+from datetime import date, datetime
 
 from schemas.job import JobIn
 
@@ -28,6 +28,7 @@ class Job(Base):
     schedule: Mapped[str] = mapped_column(String(50), nullable=True)
     salary_range: Mapped[str] = mapped_column(String(50), nullable=True)
     company: Mapped[str] = mapped_column(String(255), nullable=True)
+    update_date: Mapped[datetime] = mapped_column(DateTime, nullable=True)
 
     administrator: Mapped["Administrator"] = relationship("Administrator", back_populates="created_jobs")
     candidates: Mapped[List["Candidate"]] = relationship(
@@ -49,3 +50,4 @@ class Job(Base):
         self.schedule = other_job.schedule
         self.salary_range = other_job.salary_range
         self.company = other_job.company
+        self.update_date = datetime.now()

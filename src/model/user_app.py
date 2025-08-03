@@ -48,9 +48,6 @@ class UserApp(Base):
             self.resume_path = other_user.resume_path
         if other_user.role_id:
             self.role_id = other_user.role_id
-
-        if other_user.phone:
-            self.phone = other_user.phone
         if other_user.github_url:
             self.github_url = other_user.github_url
         if other_user.linkedin_url:

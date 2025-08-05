@@ -1,5 +1,6 @@
 from typing import List
 
+from pydantic import EmailStr
 from sqlalchemy import String, Date, ForeignKey, Enum
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from datetime import date
@@ -20,7 +21,7 @@ class UserApp(Base):
     last_name: Mapped[str] = mapped_column(String(255),nullable=False)
     password: Mapped[str] = mapped_column(String(255), nullable=False)
     birthdate: Mapped[date] = mapped_column()
-    email: Mapped[str] = mapped_column(String(255), nullable=False)
+    email: Mapped[EmailStr] = mapped_column(String(255), nullable=False)
     resume_path: Mapped[str] = mapped_column(String(255))
     role_id: Mapped[int] = mapped_column(ForeignKey('role_user.role_id'), nullable=False)
 

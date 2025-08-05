@@ -1,12 +1,9 @@
-import io
 from typing import List, Annotated
 
-from fastapi import APIRouter, Depends, status, UploadFile, File
-from fastapi.params import Header, Security
-from minio import Minio
+from fastapi import APIRouter, Depends, status
+from fastapi import Security
 
 from model import UserApp
-from src.auth import TokenData
 from dependecies import get_user_job_service, get_current_user
 from schemas import UserJob
 from services import UserJobService

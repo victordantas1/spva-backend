@@ -17,6 +17,7 @@ auth_router = APIRouter(prefix='/auth', tags=['auth'])
 @auth_router.post("/login")
 async def login(form_data: Annotated[OAuth2PasswordRequestForm, Depends()], auth_service: AuthService = Depends(get_auth_service)) -> Token:
     user = auth_service.authenticate_user(form_data.username, form_data.password)
+    scopes = auth_service.get_roles(user)
     if not user:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
@@ -25,7 +26,7 @@ async def login(form_data: Annotated[OAuth2PasswordRequestForm, Depends()], auth
         )
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = auth_service.create_token(
-        data={"sub": user.email, "scopes": form_data.scopes},
+        data={"sub": user.email, "scopes": scopes},
         expires_delta=access_token_expires
     )
     return Token(access_token=access_token, token_type="bearer")

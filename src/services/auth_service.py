@@ -47,3 +47,11 @@ class AuthService:
                 )
         return user
 
+    def get_roles(self, user: UserApp) -> List[str]:
+        roles = [user.role.name.lower()]
+        if 'master' in roles:
+            roles.append('admin')
+        if 'admin' in roles:
+            roles.append('candidate')
+
+        return roles

@@ -41,7 +41,7 @@ class UserApp(Base):
     def update_attributes(self, other_user: UserAppIn):
         self.first_name = other_user.first_name
         self.last_name = other_user.last_name
-        self.email = str(other_user.email)
+        self.email = other_user.email
 
         if other_user.birthdate:
             self.birthdate = other_user.birthdate
@@ -66,9 +66,26 @@ class UserApp(Base):
         if other_user.interest_area:
             self.interest_area = other_user.interest_area
 
-class Candidate(UserApp):
+class Administrator(UserApp):
     __mapper_args__ = {
         "polymorphic_identity": 1
+    }
+
+    created_jobs: Mapped[list["Job"]] = relationship(
+        "Job",
+        back_populates="administrator"
+    )
+    def __repr__(self):
+        return f'<UserApp {self.user_id}>, {self.first_name} {self.last_name}, {self.email}, {self.resume_path}'
+
+class Master(Administrator):
+    __mapper_args__ = {
+        "polymorphic_identity": 2
+    }
+
+class Candidate(UserApp):
+    __mapper_args__ = {
+        "polymorphic_identity": 3
     }
 
     applied_jobs: Mapped[List["Job"]] = relationship(
@@ -79,14 +96,3 @@ class Candidate(UserApp):
         back_populates="candidates"
     )
 
-class Administrator(UserApp):
-    __mapper_args__ = {
-        "polymorphic_identity": 2
-    }
-
-    created_jobs: Mapped[list["Job"]] = relationship(
-        "Job",
-        back_populates="administrator"
-    )
-    def __repr__(self):
-        return f'<UserApp {self.user_id}>, {self.first_name} {self.last_name}, {self.email}, {self.resume_path}'

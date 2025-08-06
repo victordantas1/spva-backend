@@ -1,6 +1,6 @@
 from sqlalchemy import ForeignKey, String
 from sqlalchemy.orm import mapped_column, Mapped, relationship
-from model.base_model import Base
+from src.model.base_model import Base
 
 
 class PhoneNumber(Base):

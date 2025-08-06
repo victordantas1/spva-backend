@@ -1,10 +1,8 @@
 from datetime import date
 from typing import Optional
-
-from fastapi import UploadFile
 from pydantic import BaseModel, EmailStr
 
-from model.enums import CategoryEnum
+from src.model.enums import CategoryEnum
 
 
 class UserAppBase(BaseModel):

@@ -3,13 +3,13 @@ from typing import List
 from sqlalchemy import ForeignKey, String, Text, Enum, Date, DateTime
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from model.base_model import Base
+from src.model.base_model import Base
 from .enums import CategoryEnum
-from model.user_app import Administrator, Candidate
+from src.model.user_app import Administrator, Candidate
 
 from datetime import date, datetime
 
-from schemas.job import JobIn
+from src.schemas.job import JobIn
 
 
 class Job(Base):

@@ -1,11 +1,10 @@
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
 
-
-from api.v1.auth import auth_router
-from api.v1.users import router as users_router
-from api.v1.jobs import router as jobs_router
-from api.v1.user_job import router as user_job_router
+from src.api.v1.auth import auth_router
+from src.api.v1.users import router as users_router
+from src.api.v1.jobs import router as jobs_router
+from src.api.v1.user_job import router as user_job_router
 app = FastAPI()
 
 origins = [

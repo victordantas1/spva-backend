@@ -1,8 +1,8 @@
 from fastapi import Depends
 from minio import Minio
-from config import config
-from repository import ResumeRepository
-from services import MinioService
+from src.config import config
+from src.repository import ResumeRepository
+from src.services import MinioService
 
 
 def get_minio_client() -> Minio:

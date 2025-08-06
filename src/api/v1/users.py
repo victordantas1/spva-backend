@@ -2,12 +2,12 @@ from typing import List, Annotated
 
 from fastapi import APIRouter, Depends, status, UploadFile, Security
 
-from dependecies import get_user_service, get_auth_service, get_current_user
-from dependecies.resume_dependencies import get_minio_service
-from model import UserApp
-from schemas import UserAppOut, UserAppBase
-from schemas import UserAppIn
-from services import UserAppService, MinioService
+from src.dependecies import get_user_service, get_auth_service, get_current_user
+from src.dependecies.resume_dependencies import get_minio_service
+from src.model import UserApp
+from src.schemas import UserAppOut, UserAppBase
+from src.schemas import UserAppIn
+from src.services import UserAppService, MinioService
 
 router = APIRouter(prefix="/users", tags=["users"])
 

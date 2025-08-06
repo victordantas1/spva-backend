@@ -2,8 +2,8 @@ from typing import List, Optional
 
 from sqlalchemy.orm import Session
 from sqlalchemy import select
-from model import UserApp
-from schemas import UserAppIn
+from src.model import UserApp
+from src.schemas import UserAppIn
 
 
 class UserAppRepository:

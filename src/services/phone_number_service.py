@@ -1,8 +1,8 @@
 from typing import List
 
-from model import PhoneNumber
-from repository import PhoneNumberRepository
-from schemas import PhoneNumberBase
+from src.model import PhoneNumber
+from src.repository import PhoneNumberRepository
+from src.schemas import PhoneNumberBase
 
 
 class PhoneNumberService:

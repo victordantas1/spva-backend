@@ -3,10 +3,10 @@ from typing import List, Annotated
 from fastapi import APIRouter, Depends, status
 from fastapi import Security
 
-from model import UserApp
-from dependecies import get_user_job_service, get_current_user
-from schemas import UserJob
-from services import UserJobService
+from src.model import UserApp
+from src.dependecies import get_user_job_service, get_current_user
+from src.schemas import UserJob
+from src.services import UserJobService
 
 router = APIRouter(prefix="/user_jobs", tags=["user_job_jobs"])
 

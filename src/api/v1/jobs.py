@@ -2,11 +2,11 @@ from typing import List, Annotated
 
 from fastapi import APIRouter, Depends, status, Security
 
-from dependecies import get_job_service, get_current_user
-from model import UserApp
-from schemas import UserAppOut
-from schemas import JobOut, JobIn
-from services import JobService
+from src.dependecies import get_job_service, get_current_user
+from src.model import UserApp
+from src.schemas import UserAppOut
+from src.schemas import JobOut, JobIn
+from src.services import JobService
 
 router = APIRouter(prefix="/jobs", tags=["jobs"])
 

@@ -15,13 +15,6 @@ fi
 ENVIRONMENT=$(echo "$1" | tr '[:upper:]' '[:lower:]')
 
 
-# --- INSTALA DEPENDÊNCIAS ---
-#echo "-> Instalando dependências do requirements.txt..."
-#pip install -r requirements.txt
-#echo "-> Dependências instaladas com sucesso."
-#echo ""
-
-
 # --- MODO DE DESENVOLVIMENTO ---
 if [[ "$ENVIRONMENT" == "dev" ]]; then
   echo "--- INICIANDO EM MODO DE DESENVOLVIMENTO ---"

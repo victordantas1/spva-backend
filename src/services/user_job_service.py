@@ -1,10 +1,10 @@
 from typing import List
 
-import model
-from model import UserApp
+import src.model as model
+from src.model import UserApp
 
-from repository import UserAppRepository, UserJobRepository
-from schemas import UserJob
+from src.repository import UserAppRepository, UserJobRepository
+from src.schemas import UserJob
 
 
 class UserJobService:

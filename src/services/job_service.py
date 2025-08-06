@@ -1,8 +1,8 @@
 from typing import List
 
-from model import Job, UserApp, Candidate
-from repository import JobRepository
-from schemas import JobIn
+from src.model import Job, UserApp, Candidate
+from src.repository import JobRepository
+from src.schemas import JobIn
 
 
 class JobService:

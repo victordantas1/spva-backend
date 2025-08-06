@@ -3,8 +3,7 @@ from typing import List, Optional
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from model import RoleUser
-from schemas import RoleUserIn
+from src.model import RoleUser
 
 
 class RoleUserRepository:

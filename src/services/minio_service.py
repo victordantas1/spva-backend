@@ -1,10 +1,9 @@
 import io
 from typing import Annotated
-from config import config
+from src.config import config
 from fastapi import UploadFile, File
-from minio import Minio
 
-from repository.resume_repository import ResumeRepository
+from src.repository.resume_repository import ResumeRepository
 
 
 class MinioService:

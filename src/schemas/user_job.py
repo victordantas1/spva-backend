@@ -2,7 +2,7 @@ from datetime import date
 
 from pydantic import BaseModel
 
-from model.enums import StatusEnum
+from src.model.enums import StatusEnum
 
 
 class UserJob(BaseModel):

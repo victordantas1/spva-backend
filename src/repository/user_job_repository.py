@@ -1,10 +1,9 @@
 from typing import List, Optional, cast
 
-from select import select
 from sqlalchemy.orm import Session
 
-import schemas
-from model import UserJob
+import src.schemas as schemas
+from src.model import UserJob
 
 
 class UserJobRepository:

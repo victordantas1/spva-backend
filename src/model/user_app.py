@@ -5,8 +5,8 @@ from sqlalchemy import String, Date, ForeignKey, Enum
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from datetime import date
 
-from model.base_model import Base
-from schemas.user_app import UserAppIn
+from src.model.base_model import Base
+from src.schemas.user_app import UserAppIn
 
 
 class UserApp(Base):

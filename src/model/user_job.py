@@ -1,11 +1,9 @@
-import enum
-
 from sqlalchemy import Date, Enum, String, ForeignKey
 from datetime import date
 from sqlalchemy.orm import mapped_column, Mapped
 
-import schemas
-from model.base_model import Base
+import src.schemas as schemas
+from src.model.base_model import Base
 from .enums import StatusEnum
 
 

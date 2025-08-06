@@ -1,8 +1,8 @@
 from typing import List
 
-from model import RoleUser
-from repository import RoleUserRepository
-from schemas import RoleUserIn
+from src.model import RoleUser
+from src.repository import RoleUserRepository
+from src.schemas import RoleUserIn
 
 
 class RoleUserService:

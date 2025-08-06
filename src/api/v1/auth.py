@@ -5,10 +5,10 @@ from fastapi import APIRouter, Depends, HTTPException
 from fastapi.security import OAuth2PasswordRequestForm
 from starlette import status
 
-from dependecies import get_auth_service
-from services import AuthService
+from src.dependecies import get_auth_service
+from src.services import AuthService
 from src.auth import Token
-from config import auth_config
+from src.config import auth_config
 
 ACCESS_TOKEN_EXPIRE_MINUTES = auth_config['access_token_expires_minutes']
 

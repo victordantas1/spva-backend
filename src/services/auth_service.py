@@ -5,9 +5,9 @@ from fastapi.security import SecurityScopes
 from jwt import InvalidTokenError
 from pydantic import ValidationError
 from starlette import status
-from auth import *
-from model import UserApp
-from repository import UserAppRepository
+from src.auth import *
+from src.model import UserApp
+from src.repository import UserAppRepository
 
 class AuthService:
     def __init__(self, user_repository: UserAppRepository):

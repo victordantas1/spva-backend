@@ -1,9 +1,9 @@
 from fastapi.params import Depends
 from sqlalchemy.orm import Session
 
-from db import get_session
-from repository import UserJobRepository, UserAppRepository
-from services import UserJobService, AuthService
+from src.db import get_session
+from src.repository import UserJobRepository, UserAppRepository
+from src.services import UserJobService, AuthService
 from .auth_dependencies import get_auth_service
 from .user_app_dependecies import get_user_repository
 

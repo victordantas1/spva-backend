@@ -1,5 +1,14 @@
 services:
-
+  spva-backend:
+    build: ../.
+    container_name: spva-backend-app
+    env_file:
+      - ../.env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mysql-spva
+    restart: unless-stopped
   minio-spva:
     restart: always
     image: quay.io/minio/minio

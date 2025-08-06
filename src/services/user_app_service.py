@@ -1,9 +1,9 @@
 from typing import List
 
-from model import UserApp
-from repository import UserAppRepository
-from schemas import UserAppIn
-from auth import get_password_hash
+from src.model import UserApp
+from src.repository import UserAppRepository
+from src.schemas import UserAppIn
+from src.auth import get_password_hash
 
 
 class UserAppService:

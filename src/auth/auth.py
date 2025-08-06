@@ -1,8 +1,7 @@
 from datetime import datetime, timedelta, timezone
-from fastapi.security import OAuth2PasswordBearer
 from passlib.context import CryptContext
 import jwt
-from config import auth_config
+from src.config import auth_config
 
 SECRET_KEY = auth_config['secret_key']
 ALGORITHM = auth_config['algorithm']

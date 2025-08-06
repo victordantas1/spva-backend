@@ -1,9 +1,9 @@
 from fastapi.params import Depends
 from sqlalchemy.orm import Session
 
-from db import get_session
-from repository import PhoneNumberRepository
-from services import PhoneNumberService
+from src.db import get_session
+from src.repository import PhoneNumberRepository
+from src.services import PhoneNumberService
 
 
 def get_phone_number_repository(session: Session = Depends(get_session)):

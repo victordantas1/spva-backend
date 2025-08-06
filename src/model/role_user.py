@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from model.base_model import Base
+from src.model.base_model import Base
 
 
 class RoleUser(Base):

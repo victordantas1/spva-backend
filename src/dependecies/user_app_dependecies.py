@@ -1,9 +1,9 @@
 from fastapi.params import Depends
 from sqlalchemy.orm import Session
 
-from db import get_session
-from repository import UserAppRepository
-from services import UserAppService
+from src.db import get_session
+from src.repository import UserAppRepository
+from src.services import UserAppService
 
 
 def get_user_repository(session: Session = Depends(get_session)):

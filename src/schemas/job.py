@@ -3,7 +3,7 @@ from typing import Optional
 
 from pydantic import BaseModel
 
-from model.enums.category_enum import CategoryEnum
+from src.model.enums.category_enum import CategoryEnum
 
 
 class JobBase(BaseModel):

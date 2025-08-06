@@ -1,9 +1,9 @@
 from fastapi.params import Depends
 from sqlalchemy.orm import Session
 
-from db import get_session
-from repository import JobRepository
-from services import JobService
+from src.db import get_session
+from src.repository import JobRepository
+from src.services import JobService
 
 
 def get_job_repository(session: Session = Depends(get_session)):

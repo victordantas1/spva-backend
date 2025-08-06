@@ -2,10 +2,10 @@ from fastapi import Depends, HTTPException
 from fastapi.security import OAuth2PasswordBearer, SecurityScopes
 from starlette import status
 
-from model import UserApp
-from repository import UserAppRepository
-from services import AuthService
-from dependecies import get_user_repository
+from src.model import UserApp
+from src.repository import UserAppRepository
+from src.services import AuthService
+from src.dependecies import get_user_repository
 
 def get_auth_service(user_repo: UserAppRepository = Depends(get_user_repository)) -> AuthService:
     return AuthService(user_repo)

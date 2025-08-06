@@ -3,8 +3,8 @@ from typing import List, Optional
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from model import Job, UserApp, UserJob, Candidate
-from schemas import JobIn
+from src.model import Job, UserApp, UserJob, Candidate
+from src.schemas import JobIn
 
 
 class JobRepository:

@@ -3,7 +3,7 @@ from typing import List, Optional
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from model import PhoneNumber
+from src.model import PhoneNumber
 
 
 class PhoneNumberRepository:

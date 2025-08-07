@@ -31,11 +31,7 @@ class Job(Base):
     update_date: Mapped[datetime] = mapped_column(DateTime, nullable=True)
 
     administrator: Mapped["Administrator"] = relationship("Administrator", back_populates="created_jobs")
-    candidates: Mapped[List["Candidate"]] = relationship(
-        "Candidate",
-        secondary="user_job",
-        back_populates="applied_jobs"
-    )
+    applicants: Mapped[List["UserJob"]] = relationship(back_populates="job")
 
     def update_attributes(self, other_job: JobIn):
         self.title = other_job.title

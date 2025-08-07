@@ -1,5 +1,6 @@
 from typing import List
 
+from src.schemas import CandidateOut
 from src.model import Job, UserApp, Candidate
 from src.repository import JobRepository
 from src.schemas import JobIn
@@ -29,6 +30,15 @@ class JobService:
         job = self.repository.update_job_by_id(job_id, job)
         return job
 
-    def get_candidates(self, job_id: int) -> List[Candidate]:
+    def get_candidates(self, job_id: int) -> List[CandidateOut]:
         candidates = self.repository.get_candidates(job_id)
-        return candidates
+        candidates_out = []
+        for candidate, application_date, status in candidates:
+            candidates_out.append(
+                CandidateOut(
+                    **candidate.__dict__,
+                    application_date=application_date,
+                    status=status
+                )
+            )
+        return candidates_out

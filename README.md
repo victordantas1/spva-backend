@@ -30,7 +30,13 @@ O SPVA é um sistema de back-end para um portal de empregos, projetado para cone
   - **Conteinerização:** Docker, Docker Compose
   - **Servidor Web:** Uvicorn, Gunicorn
 
-## Instalação e Configuração
+## Como Executar o Projeto
+
+Existem duas maneiras de executar o projeto: utilizando Docker para uma configuração completa e automatizada, ou localmente para desenvolvimento.
+
+### Modo 1: Executando com Docker (Recomendado)
+
+Este modo orquestra todos os serviços necessários (aplicação, banco de dados e armazenamento de objetos) em contêineres.
 
 **Pré-requisitos:**
 
@@ -40,38 +46,74 @@ O SPVA é um sistema de back-end para um portal de empregos, projetado para cone
 **Passos:**
 
 1.  **Clonar o repositório:**
+
     ```bash
     git clone https://github.com/victordantas1/spva-backend.git
     cd spva-backend
     ```
+
 2.  **Configurar variáveis de ambiente:**
-      - Renomeie o arquivo `.env.example` para `.env` (se existir) ou crie um novo arquivo `.env`.
-      - Preencha as variáveis de ambiente necessárias, como as credenciais do banco de dados e as chaves do Minio.
-3.  **Iniciar os serviços com Docker Compose:**
+
+      - Crie um arquivo `.env` a partir do template fornecido.
+        ```bash
+        cp .env.template .env
+        ```
+      - Revise o arquivo `.env` e ajuste as variáveis se necessário. Os valores padrão são projetados para funcionar com o `docker-compose.yml`.
+
+3.  **Iniciar os serviços:**
+
     ```bash
     docker-compose up -d --build
     ```
-    Este comando irá construir as imagens e iniciar os contêineres para a aplicação, o banco de dados MySQL e o servidor Minio.
 
-## Como Executar o Projeto
+    Este comando irá construir as imagens e iniciar os contêineres para a aplicação, o banco de dados MySQL e o servidor Minio. A API estará acessível em `http://localhost:8000`.
 
-O projeto pode ser executado em dois modos:
+### Modo 2: Executando Localmente (Desenvolvimento)
 
-  - **Desenvolvimento:**
+Este modo é ideal para desenvolvimento e depuração. Requer que você tenha as dependências (Python, MySQL, Minio) instaladas na sua máquina.
+
+**Pré-requisitos:**
+
+  - Python 3.10 ou superior
+  - Acesso a uma instância do MySQL e do Minio.
+
+**Passos:**
+
+1.  **Clonar o repositório:**
 
     ```bash
-    ./run.sh dev
+    git clone https://github.com/victordantas1/spva-backend.git
+    cd spva-backend
     ```
 
-    O Uvicorn iniciará o servidor com *hot-reload* na porta especificada (padrão: 8000).
-
-  - **Produção:**
+2.  **Criar ambiente virtual e instalar dependências:**
 
     ```bash
-    ./run.sh prod
+    python -m venv venv
+    source venv/bin/activate  # No Windows: venv\Scripts\activate
+    pip install -r requirements.txt
     ```
 
-    O Gunicorn iniciará o servidor com múltiplos *workers* para um ambiente de produção.
+3.  **Configurar variáveis de ambiente:**
+
+      - Crie o arquivo `.env` a partir do template:
+        ```bash
+        cp .env.template .env
+        ```
+      - **Edite o arquivo `.env`** para apontar para suas instâncias locais do MySQL e Minio, ajustando `DATABASE_URL`, `MINIO_ENDPOINT`, etc.
+
+4.  **Executar o script de inicialização:**
+
+      - Para modo de desenvolvimento com hot-reload:
+        ```bash
+        ./run.sh dev
+        ```
+      - Para modo de produção:
+        ```bash
+        ./run.sh prod
+        ```
+
+    A API estará acessível em `http://localhost:8000` (ou na porta que você definir no `.env`).
 
 ## Estrutura da API
 
@@ -97,7 +139,7 @@ A API é versionada e os endpoints principais estão localizados em `/api/v1/`.
 O esquema do banco de dados é definido no arquivo `db_compose/create_tables.sql` e inclui as seguintes tabelas principais:
 
   - `role_user`: Armazena os papéis dos usuários (ex: admin, candidate).
-  - `user_app`: Armazena as informações dos usuários, incluindo chaves estrangeiras para o papel.
+  - `user_app`: Armazena as informações dos usuários.
   - `job`: Contém os detalhes das vagas de emprego.
   - `user_job`: Tabela de associação que representa as candidaturas dos usuários às vagas.
   - `phone_number`: Armazena os números de telefone dos usuários.

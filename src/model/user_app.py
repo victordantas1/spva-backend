@@ -88,11 +88,5 @@ class Candidate(UserApp):
         "polymorphic_identity": 3
     }
 
-    applied_jobs: Mapped[List["Job"]] = relationship(
-        "Job",
-        secondary="user_job",
-        primaryjoin="Candidate.user_id == UserJob.user_id",
-        secondaryjoin="Job.job_id == UserJob.job_id",
-        back_populates="candidates"
-    )
+    applications: Mapped[List["UserJob"]] = relationship(back_populates="candidate")
 

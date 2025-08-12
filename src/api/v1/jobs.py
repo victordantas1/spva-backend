@@ -2,6 +2,7 @@ from typing import List, Annotated
 
 from fastapi import APIRouter, Depends, status, Security
 
+from src.schemas import CandidateOut
 from src.dependecies import get_job_service, get_current_user
 from src.model import UserApp
 from src.schemas import UserAppOut
@@ -55,7 +56,7 @@ async def update_job(
     job = service.update_job_by_id(job_id, job)
     return job
 
-@router.get("/{job_id}/candidates", response_model=List[UserAppOut])
+@router.get("/{job_id}/candidates", response_model=List[CandidateOut])
 async def get_candidates(
         job_id: int,
         service: Annotated[JobService, Depends(get_job_service)],

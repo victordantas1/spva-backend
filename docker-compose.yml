@@ -1,9 +1,9 @@
 services:
   spva-backend:
-    build: ../.
+    build: .
     container_name: spva-backend-app
     env_file:
-      - ../.env
+      - .env
     ports:
       - "8000:8000"
     depends_on:
@@ -22,7 +22,7 @@ services:
       - MINIO_STORAGE_USE_HTTPS=false
     command: server /data --console-address ":9001"
     volumes:
-      - ./minio_data:/data
+      - ./db_compose/minio_data:/data
 
   mysql-spva:
     image: mysql:8.0
@@ -35,7 +35,7 @@ services:
     ports:
       - "3306:3306" 
     volumes:
-      - ./create_tables.sql:/docker-entrypoint-initdb.d/0_init.sql
+      - ./db_compose/create_tables.sql:/docker-entrypoint-initdb.d/0_init.sql
       - mysql_spva_volume:/var/lib/mysql
 volumes:
   mysql_spva_volume:

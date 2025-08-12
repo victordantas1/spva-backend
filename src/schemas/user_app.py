@@ -2,6 +2,7 @@ from datetime import date
 from typing import Optional
 from pydantic import BaseModel, EmailStr
 
+from src.model.enums import StatusEnum
 from src.model.enums import CategoryEnum
 
 
@@ -30,3 +31,7 @@ class UserAppIn(UserAppBase):
 
 class UserAppOut(UserAppIn):
     pass
+
+class CandidateOut(UserAppIn):
+    application_date: date
+    status: StatusEnum

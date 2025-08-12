@@ -1,6 +1,6 @@
 from sqlalchemy import Date, Enum, String, ForeignKey
 from datetime import date
-from sqlalchemy.orm import mapped_column, Mapped
+from sqlalchemy.orm import mapped_column, Mapped, relationship
 
 import src.schemas as schemas
 from src.model.base_model import Base
@@ -23,3 +23,6 @@ class UserJob(Base):
             self.status = user_job.status
         if user_job.application_date:
             self.application_date = user_job.application_date
+
+    job: Mapped["Job"] = relationship(back_populates="applicants")
+    candidate: Mapped["Candidate"] = relationship(back_populates="applications")

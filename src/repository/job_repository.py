@@ -1,9 +1,11 @@
-from typing import List, Optional
+from datetime import date
+from typing import List, Optional, Tuple
 
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from src.model import Job, UserApp, UserJob, Candidate
+from src.model.enums import StatusEnum
+from src.model import Job, Candidate
 from src.schemas import JobIn
 
 
@@ -49,6 +51,9 @@ class JobRepository:
             raise
         return job_to_update
 
-    def get_candidates(self, job_id: int) -> List[Candidate]:
+    def get_candidates(self, job_id: int) -> List[Tuple[Candidate, date, StatusEnum]]:
         job = self.session.get(Job, job_id)
-        return job.candidates
+        candidates = []
+        for application in job.applicants:
+            candidates.append((application.candidate, application.application_date, application.status))
+        return candidates

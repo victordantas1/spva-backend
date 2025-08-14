@@ -66,9 +66,16 @@ class UserApp(Base):
         if other_user.interest_area:
             self.interest_area = other_user.interest_area
 
-class Administrator(UserApp):
+class Candidate(UserApp):
     __mapper_args__ = {
         "polymorphic_identity": 1
+    }
+
+    applications: Mapped[List["UserJob"]] = relationship(back_populates="candidate")
+
+class Administrator(UserApp):
+    __mapper_args__ = {
+        "polymorphic_identity": 2
     }
 
     created_jobs: Mapped[list["Job"]] = relationship(
@@ -78,15 +85,9 @@ class Administrator(UserApp):
     def __repr__(self):
         return f'<UserApp {self.user_id}>, {self.first_name} {self.last_name}, {self.email}, {self.resume_path}'
 
-class Master(Administrator):
-    __mapper_args__ = {
-        "polymorphic_identity": 2
-    }
 
-class Candidate(UserApp):
+class Master(Administrator):
     __mapper_args__ = {
         "polymorphic_identity": 3
     }
-
-    applications: Mapped[List["UserJob"]] = relationship(back_populates="candidate")
 
